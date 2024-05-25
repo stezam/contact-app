@@ -381,7 +381,81 @@ view('welcome')->render()
 = Illuminate\Support\Stringable {#6091
     value: "hello-world",
   }
+
+> Str::snake('HelloWorld')
+= "hello_world"  
+
+> str('HelloWorld')->snake()
+= Illuminate\Support\Stringable {#6110
+    value: "hello_world",
+  }
 ```
+to get help while you are in tinker just type 'help'
+
+```
+> help
+  help              Show a list of commands. Type `help [foo]` for information about [foo].      Aliases: ?
+  ls                List local, instance or class variables, methods and constants.              Aliases: dir
+  dump              Dump an object or primitive.
+  doc               Read the documentation for an object, class, constant, method or property.   Aliases: rtfm, man
+  show              Show the code for an object, class, constant, method or property.
+  wtf               Show the backtrace of the most recent exception.                             Aliases: last-exception, wtf?
+  whereami          Show where you are in the code.
+  throw-up          Throw an exception or error out of the Psy Shell.
+  timeit            Profiles with a timer.
+  trace             Show the current call stack.
+  buffer            Show (or clear) the contents of the code input buffer.                       Aliases: buf
+  clear             Clear the Psy Shell screen.
+  edit              Open an external editor. Afterwards, get produced code in input buffer.
+  sudo              Evaluate PHP code, bypassing visibility restrictions.
+  history           Show the Psy Shell history.                                                  Aliases: hist
+  exit              End the current session and return to caller.                                Aliases: quit, q
+  migrate           Run the database migrations
+  migrate:install   Create the migration repository
+  inspire           Display an inspiring quote
+  clear-compiled    Remove the compiled class file
+  down              Put the application into maintenance / demo mode
+  env               Display the current framework environment
+  optimize          Cache the framework bootstrap files
+  up                Bring the application out of maintenance mode
+>
+
+> doc view
+function view($view = null, $data = [], $mergeData = [])
+
+Description:
+  Get the evaluated view contents for the given view.
+
+Param:
+  string|null                                    $view
+  \Illuminate\Contracts\Support\Arrayable|array  $data
+  array                                          $mergeData
+
+Return:
+  \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+>
+
+> show view
+1004:     /**
+1005:      * Get the evaluated view contents for the given view.
+1006:      *
+1007:      * @param  string|null  $view
+1008:      * @param  \Illuminate\Contracts\Support\Arrayable|array  $data
+1009:      * @param  array  $mergeData
+1010:      * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+1011:      */
+1012:     function view($view = null, $data = [], $mergeData = [])
+1013:     {
+1014:         $factory = app(ViewFactory::class);
+1015:
+1016:         if (func_num_args() === 0) {
+1017:             return $factory;
+1018:         }
+1019:
+1020:         return $factory->make($view, $data, $mergeData);
+1021:     }
+```
+to exit tinker just type 'exit'
 
 
 
