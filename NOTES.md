@@ -160,6 +160,7 @@ Available commands:
   view:cache              Compile all of the application's Blade templates
   view:clear              Clear all compiled view files
 ```
+
 Command example 
 ```
 php artisan serve -h
@@ -167,6 +168,219 @@ php artisan serve -h
 php artisan -h
 
 php artisan make:controller -h
+```
+
+### Using Tinker in Laravel
+1. To use tinker run the command below in the terminal.
+```
+PS C:\laragon\www\contact-app> php artisan tinker
+```
+```
+> 7*5
+= 35
+
+> 7 > 5
+= true
+
+> 7 == 7
+= true
+
+> 7 == '7'
+= true
+
+> 7 == "7"
+= true
+
+> 7 === "7"
+= false
+
+> strlen('hello world')
+= 11
+
+> view ('welcome')
+= Illuminate\View\View {#6102}
+
+
+view('welcome')->render()
+= """
+  <!DOCTYPE html>\r\n
+  <html lang="en">\r\n
+  \r\n
+  <head>\r\n
+      <!-- Required meta tags -->\r\n
+      <meta charset="utf-8">\r\n
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">\r\n
+  \r\n
+      <title>Contact-App</title>\r\n
+  \r\n
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela+Round">\r\n
+      <!-- Bootstrap -->\r\n
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">\r\n
+      <link href="/css/bootstrap.min.css" rel="stylesheet">\r\n
+      <link href="/css/custom.css" rel="stylesheet">\r\n
+  </head>\r\n
+  \r\n
+  <body>\r\n
+      <!-- navbar -->\r\n
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">\r\n
+          <div class="container">\r\n
+              <a class="navbar-brand text-uppercase" href="/">\r\n
+                  <strong>Contact</strong> App\r\n
+              </a>\r\n
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-toggler"\r\n
+                  aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">\r\n
+                  <span class="navbar-toggler-icon"></span>\r\n
+              </button>\r\n
+  \r\n
+              <!-- /.navbar-header -->\r\n
+              <div class="collapse navbar-collapse" id="navbar-toggler">\r\n
+                  <ul class="navbar-nav ml-auto">\r\n
+                      <li class="nav-item mr-2"><a href="http://localhost/login" class="btn btn-outline-secondary">Login</a>\r\n
+                      </li>\r\n
+                      <li class="nav-item"><a href="http://localhost/register" class="btn btn-outline-primary">Register</a>\r\n
+                      </li>\r\n
+                  </ul>\r\n
+              </div>\r\n
+          </div>\r\n
+      </nav>\r\n
+      \r\n
+          <!-- content -->\n
+      <div class="py-5 bg-white">\n
+          <div class="px-4 my-5 text-center">\n
+              <h1 class="display-5 fw-bold mt-4">Contact App</h1>\n
+              <div class="col-lg-6 mx-auto">\n
+                  <p class="lead mb-4">Contact App gives you everything you need to organize your contacts easily.</p>\n
+                  <div class="d-flex justify-content-sm-center">\n
+                      <a href="#" class="btn btn-primary btn-lg mr-2">Sign up</a>\n
+                      <a href="#" class="btn btn-outline-secondary btn-lg">Sign in</a>\n
+                  </div>\n
+              </div>\n
+          </div>\n
+      </div>\n
+      <div class="container py-5">\n
+          <div class="row">\n
+              <div class="col-lg-4">\n
+                  <h3>Data Protection</h3>\n
+                  <p>In the event of contact deletion or corruption, keep your contacts secure and unharmed across all of\n
+                      your connected accounts.</p>\n
+              </div><!-- /.col-lg-4 -->\n
+              <div class="col-lg-4">\n
+                  <h3>Notes & Tags</h3>\n
+                  <p>Group, search, and filter your contacts using notes and tags.</p>\n
+              </div><!-- /.col-lg-4 -->\n
+              <div class="col-lg-4">\n
+                  <h3>Birthday Reminders</h3>\n
+                  <p>Weekly notifications are sent to you, including birthday reminders.</p>\n
+              </div><!-- /.col-lg-4 -->\n
+          </div>\n
+      </div>\n
+      <section class="bg-white">\n
+          <div class="container py-5">\n
+              <h2 class="text-center my-5">Easy to try. Fair pricing to upgrade.</h2>\n
+              <div class="card-deck mb-3 text-center">\n
+                  <div class="card mb-4 shadow-sm">\n
+                      <div class="card-header">\n
+                          <h4 class="my-0 font-weight-normal">Free</h4>\n
+                      </div>\n
+                      <div class="card-body">\n
+                          <h3 class="pricing-card-title">$0 <small class="text-muted">/ mo</small></h3>\n
+                          <ul class="list-unstyled mt-3 mb-4">\n
+                              <li>1,000 Contacts</li>\n
+                              <li>Sync 1 Accounts</li>\n
+                              <li>Basic Features</li>\n
+                          </ul>\n
+                          <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>\n
+                      </div>\n
+                  </div>\n
+                  <div class="card mb-4 shadow-sm">\n
+                      <div class="card-header">\n
+                          <h4 class="my-0 font-weight-normal">Pro</h4>\n
+                      </div>\n
+                      <div class="card-body">\n
+                          <h3 class="pricing-card-title">$9 <small class="text-muted">/ mo</small></h3>\n
+                          <ul class="list-unstyled mt-3 mb-4">\n
+                              <li>25,000 Contacts</li>\n
+                              <li>Sync 5 Accounts</li>\n
+                              <li>Pro Features</li>\n
+                          </ul>\n
+                          <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>\n
+                      </div>\n
+                  </div>\n
+                  <div class="card mb-4 shadow-sm">\n
+                      <div class="card-header">\n
+                          <h4 class="my-0 font-weight-normal">Enterprise</h4>\n
+                      </div>\n
+                      <div class="card-body">\n
+                          <h3 class="pricing-card-title">$15 <small class="text-muted">/ mo</small></h3>\n
+                          <ul class="list-unstyled mt-3 mb-4">\n
+                              <li>50,000 Contacts</li>\n
+                              <li>Sync 7 Accounts</li>\n
+                              <li>Advance Features</li>\n
+                          </ul>\n
+                          <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>\n
+                      </div>\n
+                  </div>\n
+              </div>\n
+          </div>\n
+      </section>\n
+  \r\n
+      <footer class="py-5 footer">\r\n
+          <div class="container">\r\n
+              <div class="row">\r\n
+                  <div class="col-12 col-md">\r\n
+                      <strong>Contact App</strong>\r\n
+                      <small class="d-block mb-3">© 2021-2022</small>\r\n
+                  </div>\r\n
+                  <div class="col-6 col-md">\r\n
+                      <h5>Features</h5>\r\n
+                      <ul class="list-unstyled text-small">\r\n
+                          <li><a href="#">Email Marketing</a></li>\r\n
+                          <li><a href="#">Email Template</a></li>\r\n
+                          <li><a href="#">Email Broadcast</a></li>\r\n
+                          <li><a href="#">Autoresponder Email</a></li>\r\n
+                          <li><a href="#">RSS-to-Email</a></li>\r\n
+                      </ul>\r\n
+                  </div>\r\n
+                  <div class="col-6 col-md">\r\n
+                      <h5>Resources</h5>\r\n
+                      <ul class="list-unstyled text-small">\r\n
+                          <li><a href="#">Landing page Guide</a></li>\r\n
+                          <li><a href="#">Inbound Marketing Guide</a></li>\r\n
+                          <li><a href="#">Email Marketing Guide</a></li>\r\n
+                          <li><a href="#">Helpdesk Guide</a></li>\r\n
+                      </ul>\r\n
+                  </div>\r\n
+                  <div class="col-6 col-md">\r\n
+                      <h5>About</h5>\r\n
+                      <ul class="list-unstyled text-small">\r\n
+                          <li><a href="#">Team</a></li>\r\n
+                          <li><a href="#">Locations</a></li>\r\n
+                          <li><a href="#">Privacy</a></li>\r\n
+                          <li><a href="#">Terms</a></li>\r\n
+                      </ul>\r\n
+                  </div>\r\n
+              </div>\r\n
+          </div>\r\n
+      </footer>\r\n
+      <script src="/js/jquery.min.js"></script>\r\n
+      <script src="/js/popper.min.js"></script>\r\n
+      <script src="/js/bootstrap.min.js"></script>\r\n
+  </body>\r\n
+  \r\n
+  </html>
+  """
+```
+
+```
+> Str::kebab("HelloWorld")
+= "hello-world"
+```
+
+```
+> str("HelloWorld")->kebab()
+= Illuminate\Support\Stringable {#6091
+    value: "hello-world",
+  }
 ```
 
 
