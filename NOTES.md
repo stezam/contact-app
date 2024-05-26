@@ -551,6 +551,25 @@ Options:
   -v|vv|vvv, --verbose             Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
 ```
 
+### Route Paramenters ###
+
+1. Route parameters
+```
+Route::get('/contacts/{id}', function($contact_id){
+    return "Contact ". $id;
+});
+```
+
+2. If a route parameter is not always needed in the uri,
+```
+Route::get('/companies/{name?}, function($name = null){
+    if($name) {
+        return "Company ". $name;
+    }else{
+        return "All Companies";
+    }
+});
+```
 
 
 
