@@ -457,6 +457,108 @@ Return:
 ```
 to exit tinker just type 'exit'
 
+### Routing
+
+Routing is how the application handles your http requests.  
+Open the routes directory routes->web.php.  Notice the laravel default route
+```
+Route::get('/', function(){
+    return view('welcome');
+});
+```
+The request method is *'get'*, the method receives to arguments, the first one is the *'uri'*, while the second argument can be an array, string or closure. int this
+case it receives a closure *(anonymous function)* that returns a view, *'return view('welcome)'*
+
+1. Defining a route, returning a string
+```
+Route::get('/contacts', function(){
+   return "<h1> Hello from contacts </h1>";
+});
+
+Route::get('/contacts/create', function(){
+    return "<h1> Create new contact </h1>" ;
+});
+```
+ 2. There are artisan commands, that can be very helpful when using routes
+ ```
+ php artisan route:list
+ ```
+
+ This will produce the following including the third parties routes.
+
+ ```
+  PS C:\laragon\www\note-project-to-delete> php artisan route:list
+
+  GET|HEAD   / .................................................................................................................................................................................. 
+  POST       _ignition/execute-solution ........................................................................... ignition.executeSolution › Spatie\LaravelIgnition › ExecuteSolutionController 
+  GET|HEAD   _ignition/health-check ....................................................................................... ignition.healthCheck › Spatie\LaravelIgnition › HealthCheckController 
+  POST       _ignition/update-config .................................................................................... ignition.updateConfig › Spatie\LaravelIgnition › UpdateConfigController 
+  GET|HEAD   api/user ........................................................................................................................................................................... 
+  GET|HEAD   contacts ...........................................................................................................................................................................  
+  GET|HEAD   contacts/create ....................................................................................................................................................................  
+  GET|HEAD   sanctum/csrf-cookie .............................................................................................. sanctum.csrf-cookie › Laravel\Sanctum › CsrfCookieController@show  
+ ```
+
+ If you need to exclude the third party routes type in the following *'php artisan route:list --except-vendor'* and will list the following.
+```
+GET|HEAD       / .............................................................................................................................................................................. 
+GET|HEAD       api/user .......................................................................................................................................................................  
+GET|HEAD       contacts .......................................................................................................................................................................                       GET|HEAD       contacts/create ................................................................................................................................................................  
+```
+
+If you need to show only the third party routes type in the following *'php artisan route:list --only-vendor'* and will list the following.
+```
+
+POST       _ignition/execute-solution ........................................................................... ignition.executeSolution › Spatie\LaravelIgnition › ExecuteSolutionController
+GET|HEAD   _ignition/health-check ....................................................................................... ignition.healthCheck › Spatie\LaravelIgnition › HealthCheckController  
+POST       _ignition/update-config .................................................................................... ignition.updateConfig › Spatie\LaravelIgnition › UpdateConfigController  
+GET|HEAD   sanctum/csrf-cookie .............................................................................................. sanctum.csrf-cookie › Laravel\Sanctum › CsrfCookieController@s
+```
+
+If you need to show only specific routes type in the following *'php artisan route:list --path=contacts'* this will list the following
+
+```
+GET|HEAD       contacts ....................................................................................................................................................................... 
+GET|HEAD       contacts/create ................................................................................................................................................................  
+```
+
+If you need more help about route listing type in the following *'php artisan route:list --help'*
+```
+PS C:\laragon\www\note-project-to-delete> php artisan route:list --help
+Description:
+  List all registered routes
+
+Usage:
+  route:list [options]
+
+Options:
+      --json                       Output the route list as JSON
+      --method[=METHOD]            Filter the routes by method
+      --name[=NAME]                Filter the routes by name
+      --domain[=DOMAIN]            Filter the routes by domain
+      --path[=PATH]                Only show routes matching the given path pattern
+      --except-path[=EXCEPT-PATH]  Do not display the routes matching the given path pattern
+  -r, --reverse                    Reverse the ordering of the routes
+      --sort[=SORT]                The column (domain, method, uri, name, action, middleware) to sort by [default: "uri"]
+      --except-vendor              Do not display routes defined by vendor packages
+      --only-vendor                Only display routes defined by vendor packages
+  -h, --help                       Display help for the given command. When no command is given display help for the list command
+  -q, --quiet                      Do not output any message
+  -V, --version                    Display this application version
+      --ansi|--no-ansi             Force (or disable --no-ansi) ANSI output
+  -n, --no-interaction             Do not ask any interactive question
+      --env[=ENV]                  The environment the command should run under
+  -v|vv|vvv, --verbose             Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+```
+
+
+
+
+
+
+
+
+
 
 
 
