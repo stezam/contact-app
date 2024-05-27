@@ -571,6 +571,147 @@ Route::get('/companies/{name?}, function($name = null){
 });
 ```
 
+### Constraining the foute parameter format
+
+To receive only numbers in your parameter
+
+```
+Route::get('/contacts/{id}, function($id){
+    return "Contacts ".$id;
+})where('id', '[0-9]+');
+```
+
+Another example for how to receive a parameter as only letters.
+
+```
+Route::get('/companies/{name?}, function($name = null){
+    if($name) {
+        return "Company ". $name;
+    }else{
+        return "All Companies";
+    }
+})->where('name','[a-zA-Z]+');
+```
+alternatively you can use the Laravel methods as shown below
+
+```
+Route::get('/contacts/{id}', function($id){
+    return "Contacts ".$id;
+});whereNumber('id');
+```
+or
+```
+Route::get('/companies/{name}', function($name){
+    return "Company " .$name;
+})->whereAlpha('name');
+```
+or
+```
+Route::get('/companies/{name}', function($name){
+    return "Company " .$name;
+})->whereAlphaNumeric('name');
+```
+
+### Named Routes ###
+
+Named routes allow the convenient generation of URLs or redirects for specific routes. You may specify a name for a route by chaining the name method onto the route definition:
+
+**'Route names should always be unique.'**
+
+Once you have assigned a name to a given route, you may use the route's name when generating URLs or redirects via Laravel's route and redirect helper functions:
+
+If the named route defines parameters, you may pass the parameters as the second argument to the route function. The given parameters will automatically be 
+inserted into the generated URL in their correct positions:
+
+If you pass additional parameters in the array, those key / value pairs will automatically be added to the generated URL's query string:
+
+```
+Route::get('/contacts/{id}', function($id){
+    return "Contacts ".$id;
+})->name('contacts.index');
+
+Route::get('/contacts/create',function(){
+    return "<h1>Add new contact</h1>";
+})->name('contacts.create);
+
+Route::get('/contacts/{id}',function(){
+    return "<h1>Show contact</h1>";
+})->name('contacts.show);
+
+
+Route::get('/', function(){
+    $html = "
+        <h1> Contact App </h1>
+        <div> 
+            <a href='" . route('contacts.index') ."'>All Contacts</a>
+            <a href='" . route('contacts.create') ."'>Add new Contact</a>
+            <a href='". route('contacts.show', 1) ."'>Show Contact</a>
+        </div>
+    ";
+    return $html;
+});
+
+```
+The pro for naming the routes is that if the *'uri'* is for some reason changed it will not affect the page as it is calling the Route name.
+
+To view the new route names just type in (smaple file)
+```
+php artisan route:list --except-vendor
+
+ contacts/{contact} ................................................................................................................................................................. contacts.show › ContactController@show
+  PUT|PATCH       contacts/{contact} ............................................................................................................................................................. contacts.update › ContactController@update
+  DELETE          contacts/{contact} ........................................................................................................................................................... contacts.destroy › ContactController@destroy
+  GET|HEAD        contacts/{contact}/edit ............................................................................................................................................................ contacts.edit › ContactController@edit
+  DELETE          contacts/{contact}/force-delete ..................................................................................................................................... contacts.force-delete › ContactController@forceDelete
+  GET|HEAD        contacts/{contact}/notes ............................................................................................................................................... contacts.notes.index › ContactNoteController@index
+
+```
+
+### Route Groups ###
+
+Route groups allow you to share route attributes, such as middleware, across a large number of routes without needing to define those attributes on each individual route.
+
+Nested groups attempt to intelligently "merge" attributes with their parent group. Middleware and where conditions are merged while names and prefixes are appended. Namespace delimiters and slashes in URI prefixes are automatically added where appropriate.
+
+```
+Route::get('/contacts/{id}', function($id){
+    return "Contacts ".$id;
+})->name('contacts.index');
+
+Route::get('/contacts/create',function(){
+    return "<h1>Add new contact</h1>";
+})->name('contacts.create);
+
+Route::get('/contacts/{id}',function(){
+    return "<h1>Show contact</h1>";
+})->name('contacts.show);
+```
+This is how to create a route group for the above
+
+```
+Route::prefix('admin)->name('admin.')->group(function(){
+    Route::get('/contacts/{id}', function($id){
+    return "Contacts ".$id;
+})->name('contacts.index');
+    Route::get('/contacts/create',function(){
+        return "<h1>Add new contact</h1>";
+    })->name('contacts.create);
+
+    Route::get('/contacts/{id}',function(){
+        return "<h1>Show contact</h1>";
+    })->name('contacts.show);
+});
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
